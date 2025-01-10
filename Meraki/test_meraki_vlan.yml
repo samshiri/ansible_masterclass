@@ -1,0 +1,33 @@
+---
+
+- hosts: localhost
+  vars:
+    network_id_Expo: "N_658088495549566056"
+    network_id_ECC: "N_755478837491409660"
+    cidrrange: "192.168.40.0/24"
+    aplip: "192.168.40.1"
+    vid: "1234"
+    mode: "present"
+    vname: "Ansible vlan"
+    vsub: "192.168.40.0/24"
+  gather_facts: false
+  tasks:
+
+    - name: Update Edmonton Expo Vlans
+      cisco.meraki.networks_appliance_vlans:
+        state: "{{mode}}"
+        applianceIp: "{{aplip}}"
+        cidr: "{{cidrrange}}"
+        id: "{{vid}}"
+        name: "{{vname}}"
+        networkId: "{{network_id_Expo}}"
+        subnet: "{{vsub}}"
+    - name: Update Edmonton Expo Vlans
+      cisco.meraki.networks_appliance_vlans:
+        state: "{{mode}}"
+        applianceIp: "{{aplip}}"
+        cidr: "{{cidrrange}}"
+        id: "{{vid}}"
+        name: "{{vname}}"
+        networkId: "{{network_id_ECC}}"
+        subnet: "{{vsub}}"    
